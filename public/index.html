@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banner Prototype Generator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-panel">
+        <p class="eyebrow">Franklin Energy internal tool</p>
+        <h1>Spin up a site-specific banner prototype in CodePen.</h1>
+        <p class="lede">
+          Paste a live marketplace homepage URL, let the app extract the header, first hero
+          carousel block, stylesheet, and font links, then open a prefilled CodePen the
+          designer can save to their own account.
+        </p>
+
+        <form id="extract-form" class="extract-form">
+          <label for="marketplace-url">Marketplace URL</label>
+          <div class="field-row">
+            <input
+              id="marketplace-url"
+              name="url"
+              type="url"
+              inputmode="url"
+              placeholder="https://marketplace.example.com"
+              required
+            />
+            <button type="submit">Inspect Site</button>
+          </div>
+          <p class="hint">
+            This runs server-side so it can inspect live pages that a front-end-only pen cannot
+            fetch because of CORS.
+          </p>
+        </form>
+
+        <div id="status" class="status" aria-live="polite"></div>
+      </section>
+
+      <section id="results" class="results is-hidden">
+        <div class="results-head">
+          <div>
+            <p class="eyebrow">Generated pen</p>
+            <h2 id="result-title">Prototype payload</h2>
+          </div>
+
+          <form
+            id="codepen-form"
+            class="codepen-form"
+            action="https://codepen.io/cpe/pen/define"
+            method="POST"
+            target="_blank"
+          >
+            <input id="codepen-data" type="hidden" name="data" />
+            <button type="submit" class="primary-action">Open In CodePen</button>
+          </form>
+        </div>
+
+        <div class="meta-grid">
+          <article class="meta-card">
+            <p class="meta-label">Source</p>
+            <p id="source-url" class="meta-value"></p>
+          </article>
+          <article class="meta-card">
+            <p class="meta-label">Primary CSS</p>
+            <p id="primary-css" class="meta-value"></p>
+          </article>
+          <article class="meta-card">
+            <p class="meta-label">Hero selector</p>
+            <p id="hero-selector" class="meta-value"></p>
+          </article>
+        </div>
+
+        <div id="notes" class="notes"></div>
+
+        <section class="workspace">
+          <div class="panel">
+            <label for="pen-title">Pen title</label>
+            <input id="pen-title" type="text" />
+          </div>
+
+          <div class="panel">
+            <label for="external-css">External CSS URLs</label>
+            <textarea id="external-css" rows="4"></textarea>
+            <p class="hint">One URL per line. These become CodePen External Stylesheets.</p>
+          </div>
+
+          <div class="panel">
+            <label for="html-panel">HTML panel</label>
+            <textarea id="html-panel" rows="18"></textarea>
+          </div>
+
+          <div class="panel split">
+            <div>
+              <label for="css-panel">CSS panel</label>
+              <textarea id="css-panel" rows="16"></textarea>
+            </div>
+            <div>
+              <label for="js-panel">JS panel</label>
+              <textarea id="js-panel" rows="16"></textarea>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="preview-head">
+              <label>Preview</label>
+              <button id="refresh-preview" type="button" class="secondary-action">
+                Refresh Preview
+              </button>
+            </div>
+            <iframe id="preview-frame" title="Prototype preview"></iframe>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
