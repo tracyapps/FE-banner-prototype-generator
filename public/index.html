@@ -42,16 +42,7 @@
             <h2 id="result-title">Prototype payload</h2>
           </div>
 
-          <form
-            id="codepen-form"
-            class="codepen-form"
-            action="https://codepen.io/cpe/pen/define"
-            method="POST"
-            target="_blank"
-          >
-            <input id="codepen-data" type="hidden" name="data" />
-            <button type="submit" class="primary-action">Open In CodePen</button>
-          </form>
+         
         </div>
 
         <div class="meta-grid">
@@ -72,11 +63,35 @@
         <div id="notes" class="notes"></div>
 
         <section class="workspace">
-          <div class="panel">
-            <label for="pen-title">Pen title</label>
-            <input id="pen-title" type="text" />
+          <div class="panel highlighted">
+            <div class="flex-row">
+              <div class="field-group flex-fill">
+                <label for="pen-title">Pen title</label>
+                <input id="pen-title" type="text" />
+              </div>
+              <form
+                  id="codepen-form"
+                  class="codepen-form"
+                  action="https://codepen.io/cpe/pen/define"
+                  method="POST"
+                  target="_blank"
+                >
+                <input id="codepen-data" type="hidden" name="data" />
+                <button type="submit" class="primary-action">Send to CodePen</button>
+              </form>
+            </div>
           </div>
-
+          
+          <div class="panel">
+            <div class="preview-head">
+              <label>Preview</label>
+              <button id="refresh-preview" type="button" class="secondary-action">
+                Refresh Preview
+              </button>
+            </div>
+            <iframe id="preview-frame" title="Prototype preview"></iframe>
+          </div>
+          
           <div class="panel">
             <label for="external-css">External CSS URLs</label>
             <textarea id="external-css" rows="4"></textarea>
@@ -99,18 +114,16 @@
             </div>
           </div>
 
-          <div class="panel">
-            <div class="preview-head">
-              <label>Preview</label>
-              <button id="refresh-preview" type="button" class="secondary-action">
-                Refresh Preview
-              </button>
-            </div>
-            <iframe id="preview-frame" title="Prototype preview"></iframe>
-          </div>
         </section>
       </section>
     </main>
+
+    <footer>
+   
+      <div class="footer-text">
+        <b>Franklin Energy's Banner Prototype Generator</b> - Crafted by <a href="https://tapps.design">tapps</a>, 2026
+      </div>
+    </footer>
 
     <script src="/app.js" defer></script>
   </body>

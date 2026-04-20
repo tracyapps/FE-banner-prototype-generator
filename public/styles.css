@@ -127,6 +127,16 @@ h2 {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
 }
+.flex-row {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+  align-items: flex-end;
+
+}
+.flex-row > .flex-fill {
+  flex: 1;
+}
 
 label {
   display: block;
@@ -292,12 +302,35 @@ button:active {
 .panel label {
   margin-bottom: 10px;
 }
+.highlighted {
+  background: var(--accent);
+  color: #fff;
+}
 
 #preview-frame {
   width: 100%;
   min-height: 720px;
   border: 1px solid rgba(19, 33, 47, 0.08);
   background: white;
+}
+
+footer {
+  opacity: 0.7;
+  background: var(--panel);
+  color: var(--muted);
+  text-align: center;
+  padding: 3em;
+  margin-top: 4em;
+  font-size: 80%;
+}
+
+a {
+  color: var(--accent);
+}
+a:hover,
+a:target,
+a:focus {
+color: var(--accent-2);
 }
 
 @media (max-width: 860px) {
