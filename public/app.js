@@ -106,6 +106,7 @@ function syncCodepenPayload() {
     css: fields.css.value,
     js: fields.js.value,
     css_external: collectExternalCss().join(";"),
+    js_external: (latestResult.jsExternalUrls || []).join(";"),
     css_pre_processor: "none",
     js_pre_processor: "none",
     layout: "left",
@@ -118,6 +119,9 @@ function renderPreview() {
   const cssLinks = collectExternalCss()
     .map((href) => `<link rel="stylesheet" href="${escapeHtml(href)}" />`)
     .join("\n");
+  const jsScripts = (latestResult?.jsExternalUrls || [])
+    .map((src) => `<script src="${escapeHtml(src)}"><\\/script>`)
+    .join("\n");
 
   const srcdoc = `<!DOCTYPE html>
 <html lang="en">
@@ -129,6 +133,7 @@ function renderPreview() {
   </head>
   <body>
     ${fields.html.value}
+    ${jsScripts}
     <script>${fields.js.value.replace(/<\/script>/gi, "<\\/script>")}<\/script>
   </body>
 </html>`;
