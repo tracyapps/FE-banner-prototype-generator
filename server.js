@@ -9,6 +9,13 @@ const port = Number(process.env.PORT || 3000);
 app.use(express.json({ limit: "1mb" }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Serve Vercel Analytics script for local development
+app.get("/_vercel/insights/script.js", (req, res) => {
+  const analyticsScript = path.join(__dirname, "node_modules/@vercel/analytics/dist/index.js");
+  res.type("application/javascript");
+  res.sendFile(analyticsScript);
+});
+
 app.post("/api/extract", async (req, res) => {
   const url = String(req.body?.url || "").trim();
 
